@@ -6,8 +6,21 @@
 'use strict';
 
 // ── CONFIG ──────────────────────────────────────────────
-const API_BASE = 'https://tata-motors-api.onrender.com'; // Replace with your Render URL
+let API_BASE = ''; // Loaded dynamically from environment
 const USE_MOCK = false; // Set false when backend is live
+
+// ── API / MOCK ───────────────────────────────────────────
+async function initApiConfig() {
+  if (USE_MOCK) return;
+  try {
+    const res = await fetch('/api/config');
+    const data = await res.json();
+    API_BASE = data.API_BASE;
+  } catch (e) {
+    console.warn('Vercel API route not found, falling back to localhost or previously cached URL.');
+    if (!API_BASE) API_BASE = 'http://localhost:8000';
+  }
+}
 
 // ── CHART DEFAULTS ──────────────────────────────────────
 const GRID = 'rgba(79,142,247,0.08)';
@@ -1294,6 +1307,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSearch();
   initTheme();
   initWhatIf();
+  
+  await initApiConfig(); // Load ENV variables dynamically
   checkApiStatus();
   
   await initData();

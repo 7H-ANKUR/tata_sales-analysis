@@ -29,30 +29,9 @@ Wait approximately 3-5 minutes for Render to install the Python packages and boo
 
 ---
 
-## Part 2: Updating the Frontend with the Live URL
+## Part 2: Deploying the Frontend on Vercel
 
-Now that your backend is alive, we must tell your frontend where to find it.
-
-1. Open your code editor locally on your computer.
-2. Open the file: `ml/tata-frontend/app.js`
-3. At the very top (Line 9), replace the `API_BASE` with your new Render URL:
-   ```javascript
-   const API_BASE = 'https://tata-motors-api-xyz.onrender.com'; // Paste your copied Render URL here!
-   const USE_MOCK = false; // Make sure this remains false!
-   ```
-4. Save the file.
-5. Push this small code update to GitHub using your terminal:
-   ```bash
-   git add "ml/tata-frontend/app.js"
-   git commit -m "Update API_BASE to live Render URL"
-   git push origin main
-   ```
-
----
-
-## Part 3: Deploying the Frontend on Vercel
-
-Vercel is perfect for this because we've already included a `vercel.json` file that handles the configurations for you!
+Vercel handles everything else! We've utilized Vercel's Serverless architecture so you can securely pass your Render URL as an Environment Variable without exposing it in your GitHub code!
 
 1. Go to [Vercel.com](https://vercel.com) and log in with your GitHub account.
 2. From your dashboard, click **"Add New"** > **"Project"**.
@@ -63,7 +42,11 @@ Vercel is perfect for this because we've already included a `vercel.json` file t
    - **Framework Preset**: `Other`
    - **Root Directory**: Click "Edit", select `ml/tata-frontend`, and click **Continue**. *(Very Important!)*
 
-5. Expand the **Build and Output Settings** section and ensure everything is toggled **Off** or left blank. (Since this is Vanilla HTML/JS, it requires no build command, and our `vercel.json` securely handles routing!)
+5. Expand the **Environment Variables** section:
+   - **Key**: `RENDER_BACKEND_URL`
+   - **Value**: The Render URL you copied earlier! (e.g., `https://tata-motors-api-xyz.onrender.com`)
+   - Click **Add**.
+
 6. Click **Deploy**.
 
-Vercel will take less than 15 seconds to deploy your frontend. Once the confetti pops on your screen, click **Continue to Dashboard** and click **Visit** to see your live, fully operational Tata Motors Sales Intelligence Platform!
+Vercel will quickly deploy your frontend and securely route your API endpoints. Click **Visit** to see your live, fully operational Tata Motors Sales Intelligence Platform!
