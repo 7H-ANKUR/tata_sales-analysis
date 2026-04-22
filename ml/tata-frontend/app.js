@@ -1,17 +1,11 @@
 'use strict';
 
 // ── CONFIG ──────────────────────────────────────────
-let API_BASE = '';
+let API_BASE = 'https://tata-sales-analysis.onrender.com';
 const USD_TO_INR = 93.74;
 
 async function initApiConfig() {
-  try {
-    const res = await fetch('/api/config');
-    const data = await res.json();
-    API_BASE = data.API_BASE;
-  } catch(e) {
-    if (!API_BASE) API_BASE = 'http://localhost:8000';
-  }
+  // Backend URL is hardcoded above to ensure Vercel always connects to Render
 }
 
 // ── CURRENCY ────────────────────────────────────────
