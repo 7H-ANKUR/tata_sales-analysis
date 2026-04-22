@@ -68,11 +68,11 @@ class PredictRequest(BaseModel):
 class WhatIfRequest(BaseModel):
     country: str = "India"
     model_id: int = 1
-    year: int = 2025
-    cost_ratio_delta: float = Field(0.0, description="% change in cost ratio, e.g. -5 means reduce by 5%")
-    rnd_delta: float = Field(0.0, description="% change in R&D spend")
-    marketing_delta: float = Field(0.0, description="% change in marketing spend")
-    units_delta: float = Field(0.0, description="% change in units sold")
+    year: int = Field(2025, ge=2025, le=2034)
+    cost_ratio_delta: float = Field(0.0, ge=-50, le=50, description="% change in cost ratio, e.g. -5 means reduce by 5%")
+    rnd_delta: float = Field(0.0, ge=-50, le=50, description="% change in R&D spend")
+    marketing_delta: float = Field(0.0, ge=-50, le=50, description="% change in marketing spend")
+    units_delta: float = Field(0.0, ge=-50, le=50, description="% change in units sold")
 
 class PriceOptimizeRequest(BaseModel):
     country: str = "India"

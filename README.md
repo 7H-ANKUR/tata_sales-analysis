@@ -32,7 +32,7 @@ A High-performance API built with **FastAPI** wrapping the serialized Scikit-Lea
     *   `POST /segment-predict`: Outputs customer segmentation profiles.
 
 ### 2. Frontend (`/ml/tata-frontend`)
-A modern, responsive, Dribbble-inspired UI rendering data asynchronously without frontend frameworks.
+A modern, responsive UI built with the **Stitch Design System**, rendering data asynchronously without frontend frameworks.
 *   **Technologies**: Vanilla HTML/CSS, JavaScript (ES6), Chart.js.
 *   **Features**: Asynchronous `fetch` calls dynamically populating cards and charts, dark/light theme implementations, and a dynamic sidebar state manager. 
 

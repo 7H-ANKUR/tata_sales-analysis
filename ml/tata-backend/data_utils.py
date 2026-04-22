@@ -267,11 +267,14 @@ def compute_goal_gap(target_revenue: float, country: str, year: int) -> Dict:
 
     # cost_ratio is 68.9% importance — approximate required change
     cost_lever = gap_pct / 0.689
+    is_ok = abs(cost_lever) < 15
     return {
         "target_revenue":      round(target_revenue, 2),
         "forecast_revenue":    round(base_rev, 2),
         "gap":                 round(gap, 2),
         "gap_pct":             round(gap_pct, 2),
         "required_cost_reduction_pct": round(cost_lever, 2),
-        "achievable":          abs(cost_lever) < 15,
+        "required_levers": {"cost_ratio_reduction_pct": round(cost_lever, 2)},
+        "achievable":          is_ok,
+        "is_achievable":       is_ok,
     }
